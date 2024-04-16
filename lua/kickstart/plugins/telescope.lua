@@ -28,7 +28,7 @@ return {
       { 'nvim-telescope/telescope-ui-select.nvim' },
 
       -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+      { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -56,24 +56,47 @@ return {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
+        defaults = {
+          mappings = {
+            i = {
+              ['<c-enter>'] = 'to_fuzzy_refine',
+              -- TODO: decide if I want to keep the following binds
+              -- ['C-j'] = actions.move_selection_next,
+              -- ['C-k'] = actions.move_selection_previous,
+            },
+          },
+        },
         -- pickers = {}
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
+          ['file-browser'] = {
+            theme = "ivy",
+            -- disables netrw and use telescope-file-browser in its place
+            hijack_netrw = true,
+            mappings = {
+              ["i"] = {
+                -- your custom insert mode mappings
+              },
+              ["n"] = {
+                -- your custom normal mode mappings
+              },
+            },
+          }
         },
       }
 
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require("telescope").load_extension, "file_browser")
+      pcall(require("telescope").load_extension, "undo")
+      pcall(require("telescope").load_extension, "advanced_git_search")
+      pcall(require("telescope").load_extension, "noice")
 
       -- See `:help telescope.builtin`
+      -- Telescope keymaps
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
@@ -81,6 +104,10 @@ return {
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+      vim.keymap.set('n', '<leader>sig', function() builtin.live_grep({ search_dirs = { vim.fn.expand("%:p") } }) end,
+        { desc = '[S]earch [I]n Current File by [G]rep' })
+      vim.keymap.set('n', '<leader>sif', function() builtin.live_grep({ search_dirs = { vim.fn.expand("%:p") } }) end,
+        { desc = '[S]earch [I]n Current [F]ile by Grep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
@@ -94,6 +121,15 @@ return {
           previewer = false,
         })
       end, { desc = '[/] Fuzzily search in current buffer' })
+
+      -- Bindings for file_browser
+      vim.keymap.set("n", "<space>fb", ":Telescope file_browser<CR>")
+      -- open file_browser with the path of the current buffer
+      vim.keymap.set("n", "<space>fb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
+      -- Alternatively, using lua API
+      vim.keymap.set("n", "<space>fb", function()
+        require("telescope").extensions.file_browser.file_browser()
+      end)
 
       -- It's also possible to pass additional configuration options.
       --  See `:help telescope.builtin.live_grep()` for information about particular keys

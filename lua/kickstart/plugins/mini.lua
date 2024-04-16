@@ -16,6 +16,16 @@ return {
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
+      require('mini.pairs').setup()
+      require('mini.comment').setup()
+      require('mini.bracketed').setup()
+      require('mini.ai').setup()
+      require('mini.files').setup({
+        windows = {
+          preview = true,
+          width_preview = 80,
+        }
+      })
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
@@ -36,5 +46,11 @@ return {
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
+  vim.keymap.set('n', '<leader>mf', function()
+    require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+  end, { desc = 'Open [M]ini.[F]iles in of Current File' }),
+  vim.keymap.set('n', '<leader>mF', function()
+    require("mini.files").open(vim.uv.cwd(), true)
+  end, { desc = "Open [M]ini.[F]iles in cwd" })
 }
 -- vim: ts=2 sts=2 sw=2 et

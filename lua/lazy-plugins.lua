@@ -30,9 +30,14 @@ require('lazy').setup({
 
   require 'kickstart/plugins/gitsigns',
 
-  require 'kickstart/plugins/which-key',
+  -- require 'kickstart/plugins/which-key',
+
+  require 'custom/plugins/noice',
 
   require 'kickstart/plugins/telescope',
+
+  --  TODO: fix below plugin
+  -- require 'custom/plugins/telescope-file-browser',
 
   require 'kickstart/plugins/lspconfig',
 
@@ -40,13 +45,32 @@ require('lazy').setup({
 
   require 'kickstart/plugins/cmp',
 
-  require 'kickstart/plugins/tokyonight',
+  -- require 'kickstart/plugins/tokyonight',
+
+  require 'custom/plugins/everforest',
+
+  require 'custom/plugins/neotest',
+
+  require 'custom/plugins/cloak',
+
+  require 'custom/plugins/nvimtree',
+
+  -- require 'custom/plugins/oil',
+
+  require 'custom/plugins/vimbegood',
+
+  -- TODO: fix below plugin
+  -- require 'custom/plugins/copilot',
+
+  require 'custom/plugins/undotree',
 
   require 'kickstart/plugins/todo-comments',
 
   require 'kickstart/plugins/mini',
 
   require 'kickstart/plugins/treesitter',
+
+  require 'custom/plugins/undotree',
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
@@ -58,7 +82,7 @@ require('lazy').setup({
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
