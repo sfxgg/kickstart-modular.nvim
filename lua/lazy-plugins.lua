@@ -36,7 +36,7 @@ require('lazy').setup({
 
   require 'kickstart/plugins/telescope',
 
-  --  TODO: fix below plugin
+  --  TODO: fix or remove below plugin
   -- require 'custom/plugins/telescope-file-browser',
 
   require 'kickstart/plugins/lspconfig',
@@ -47,22 +47,28 @@ require('lazy').setup({
 
   -- require 'kickstart/plugins/tokyonight',
 
-  require 'custom/plugins/everforest',
+  require 'custom/plugins/nightfox',
+
+  -- require 'custom/plugins/everforest',
 
   require 'custom/plugins/neotest',
 
   require 'custom/plugins/cloak',
 
-  require 'custom/plugins/nvimtree',
+  require 'custom/plugins/bufferline',
+
+  require 'custom/plugins/lualine',
 
   -- require 'custom/plugins/oil',
+
+  require 'custom/plugins/nvimtree',
 
   require 'custom/plugins/vimbegood',
 
   -- TODO: fix below plugin
   -- require 'custom/plugins/copilot',
 
-  require 'custom/plugins/undotree',
+  -- require 'custom/plugins/undotree',
 
   require 'kickstart/plugins/todo-comments',
 

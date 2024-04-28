@@ -23,6 +23,9 @@ vim.opt.clipboard = 'unnamedplus'
 -- Enable break indent
 vim.opt.breakindent = true
 
+-- Always show tabs
+vim.opt.showtabline = 0
+
 -- Save undo history
 vim.opt.undofile = true
 
