@@ -53,11 +53,17 @@ require('lazy').setup({
 
   require 'custom/plugins/neotest',
 
+  require 'custom/plugins/lazygit',
+
   require 'custom/plugins/cloak',
 
-  require 'custom/plugins/bufferline',
+  -- require 'custom/plugins/bufferline',
 
   require 'custom/plugins/lualine',
+
+  require 'custom/plugins/lspsaga',
+
+  -- require 'custom/plugins/leetcode',
 
   -- require 'custom/plugins/oil',
 
